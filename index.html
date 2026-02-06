@@ -206,6 +206,12 @@
       border-radius: 14px;
       padding: 10px 10px;
       min-height: 64px;
+	  /* Make key stats more visible */
+.stat.stat-question .v { color: rgba(96,165,250,0.95); }   /* accent */
+.stat.stat-level .v    { color: rgba(251,191,36,0.95); }   /* gold */
+.stat.stat-score .v    { color: rgba(52,211,153,0.95); }   /* green */
+.stat.stat-stability .v{ color: rgba(251,113,133,0.95); }  /* pink/red */
+
     }
 
     .stat .k{
@@ -340,7 +346,11 @@
       align-items:center;
       justify-content:center;
     }
-    .opt:hover{ background: rgba(255,255,255,0.10); }
+/* Stronger hover highlight for answers */
+.opt:hover{
+  background: rgba(96,165,250,0.18);
+  border-color: rgba(96,165,250,0.75);
+}
     .opt:active{ transform: translateY(1px); }
 
     .opt.selected{
@@ -1052,33 +1062,35 @@
 
     leftPanel.innerHTML = `
       <div class="statusGrid">
-        <div class="stat">
-          <div class="k">Question</div>
-          <div class="v">${qnum} / ${TOTAL_QUESTIONS}</div>
+    <div class="stat stat-question">
+    <div class="k">Question</div>
+    <div class="v">${qnum} / ${TOTAL_QUESTIONS}</div>
+  </div>
+
         </div>
-        <div class="stat">
-          <div class="k">Year</div>
-          <div class="v">${q.year}</div>
-        </div>
-        <div class="stat">
-          <div class="k">Level</div>
-          <div class="v">${level}</div>
-        </div>
-        <div class="stat">
-          <div class="k">Score</div>
-          <div class="v">${score}</div>
-        </div>
-        <div class="stat">
-          <div class="k">Accuracy</div>
-          <div class="v">${accuracy()}%</div>
-        </div>
-        <div class="stat">
-          <div class="k">Time Stability</div>
-          <div class="stabilityInline">
-            <div class="v">${stability}</div>
-            <div class="dots">${stabilityDots()}</div>
-          </div>
-        </div>
+    <div class="stat">
+    <div class="k">Year</div>
+    <div class="v">${q.year}</div>
+  </div>
+       <div class="stat stat-level">
+    <div class="k">Level</div>
+    <div class="v">${level}</div>
+  </div>
+      <div class="stat stat-score">
+    <div class="k">Score</div>
+    <div class="v">${score}</div>
+  </div>
+       <div class="stat">
+    <div class="k">Accuracy</div>
+    <div class="v">${accuracy()}%</div>
+  </div>
+<div class="stat stat-stability">
+    <div class="k">Time Stability</div>
+    <div class="stabilityInline">
+      <div class="v">${stability}</div>
+      <div class="dots">${stabilityDots()}</div>
+    </div>
+  </div>
       </div>
 
       <div class="stabilityBarWrap">
