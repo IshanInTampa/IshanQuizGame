@@ -9,7 +9,6 @@
       --bg: #0b1220;
       --surface: rgba(255,255,255,0.06);
       --surface2: rgba(255,255,255,0.10);
-      --card: rgba(255,255,255,0.08);
       --text: #f4f6fb;
       --muted: rgba(244,246,251,0.72);
       --border: rgba(255,255,255,0.14);
@@ -36,7 +35,7 @@
     .app{
       max-width: 1120px;
       margin: 0 auto;
-      padding: 18px;
+      padding: 16px;
     }
 
     .header{
@@ -62,14 +61,6 @@
       pointer-events:none;
     }
 
-    .titleRow{
-      display:flex;
-      align-items:flex-end;
-      justify-content: space-between;
-      gap:12px;
-      flex-wrap: wrap;
-    }
-
     .title{
       margin:0;
       font-size: 26px;
@@ -81,7 +72,7 @@
       margin: 6px 0 0 0;
       color: var(--muted);
       font-size: 14px;
-      line-height: 1.4;
+      line-height: 1.45;
       max-width: 860px;
     }
 
@@ -105,11 +96,11 @@
       backdrop-filter: blur(10px);
     }
 
-    .chip strong{color: var(--text); font-weight: 800;}
+    .chip strong{color: var(--text); font-weight: 900;}
 
     .main{
       display:grid;
-      grid-template-columns: 1fr 280px;
+      grid-template-columns: 1fr 320px; /* give the right side more purpose */
       gap: 14px;
       align-items:start;
     }
@@ -125,7 +116,7 @@
 
     .start{
       text-align:left;
-      padding: 18px 10px 6px 10px;
+      padding: 6px 2px 2px 2px;
     }
 
     .start h2{
@@ -137,7 +128,7 @@
 
     .copy{
       color: var(--muted);
-      line-height: 1.55;
+      line-height: 1.6;
       margin: 0 0 14px 0;
       font-size: 14px;
     }
@@ -149,11 +140,30 @@
       padding: 12px 12px;
       color: var(--muted);
       font-size: 14px;
-      line-height: 1.5;
+      line-height: 1.55;
       margin: 12px 0 14px 0;
     }
 
     .callout strong{color: var(--text);}
+
+    .howtoGrid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .howtoCard{
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.06);
+      border-radius: 14px;
+      padding: 12px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .howtoCard b{color: var(--text);}
 
     .btnRow{
       display:flex;
@@ -163,18 +173,19 @@
     }
 
     .btn{
-      border: 1px solid var(--border);
+      border: 1px solid rgba(255,255,255,0.18);
       background: #0f172a;
       color: white;
       border-radius: 14px;
       padding: 12px 14px;
       font-size: 15px;
-      font-weight: 800;
+      font-weight: 900;
       cursor: pointer;
       box-shadow: 0 10px 24px rgba(0,0,0,0.22);
       transition: transform 0.06s ease, background 0.15s ease, border-color 0.15s ease;
+      min-height: 44px; /* mobile tap target */
     }
-    .btn:hover{ background:#111c35; border-color: rgba(255,255,255,0.22); }
+    .btn:hover{ background:#111c35; border-color: rgba(255,255,255,0.28); }
     .btn:active{ transform: translateY(1px); }
     .btn.secondary{
       background: rgba(255,255,255,0.06);
@@ -184,7 +195,7 @@
 
     .statusGrid{
       display:grid;
-      grid-template-columns: repeat(5, minmax(0,1fr));
+      grid-template-columns: repeat(6, minmax(0,1fr));
       gap:10px;
       margin-bottom: 12px;
     }
@@ -194,7 +205,7 @@
       background: rgba(255,255,255,0.06);
       border-radius: 14px;
       padding: 10px 10px;
-      min-height: 60px;
+      min-height: 64px;
     }
 
     .stat .k{
@@ -205,8 +216,57 @@
       text-transform: uppercase;
     }
     .stat .v{
-      font-weight: 900;
+      font-weight: 950;
       font-size: 18px;
+    }
+
+    .stabilityInline{
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      gap:10px;
+    }
+
+    .dots{
+      font-size: 14px;
+      letter-spacing: 1px;
+      font-weight: 900;
+      color: rgba(255,255,255,0.9);
+      white-space: nowrap;
+    }
+
+    .stabilityBarWrap{
+      margin: 10px 0 14px 0;
+      border:1px solid var(--border);
+      background: rgba(255,255,255,0.06);
+      border-radius: 16px;
+      padding: 12px;
+    }
+
+    .stabilityHeader{
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 8px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .stabilityHeader b{color: var(--text);}
+
+    .bar{
+      height: 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid var(--border);
+      overflow:hidden;
+    }
+    .bar > div{
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, rgba(52,211,153,0.95), rgba(251,191,36,0.95), rgba(251,113,133,0.95));
+      border-radius: 999px;
+      transition: width 0.25s ease;
     }
 
     .progressWrap{
@@ -221,20 +281,6 @@
       font-size: 13px;
       margin-bottom: 8px;
     }
-    .bar{
-      height: 12px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.08);
-      border: 1px solid var(--border);
-      overflow:hidden;
-    }
-    .bar > div{
-      height: 100%;
-      width: 0%;
-      background: linear-gradient(90deg, rgba(96,165,250,0.95), rgba(52,211,153,0.95));
-      border-radius: 999px;
-      transition: width 0.25s ease;
-    }
 
     .qline{
       display:flex;
@@ -248,7 +294,7 @@
     .qline h3{
       margin:0;
       font-size: 18px;
-      font-weight: 900;
+      font-weight: 950;
       letter-spacing: 0.2px;
     }
 
@@ -267,8 +313,8 @@
     .question{
       font-size: 18px;
       margin: 12px 0 14px 0;
-      line-height: 1.45;
-      font-weight: 750;
+      line-height: 1.5;
+      font-weight: 800;
     }
 
     .options{
@@ -281,14 +327,18 @@
       border: 1px solid var(--border);
       background: rgba(255,255,255,0.06);
       border-radius: 14px;
-      padding: 12px 12px;
+      padding: 14px 12px;
       cursor: pointer;
       text-align: center;
       font-size: 16px;
-      font-weight: 700;
+      font-weight: 850;
       box-shadow: 0 10px 18px rgba(0,0,0,0.20);
       user-select:none;
       transition: transform 0.06s ease, background 0.15s ease, border-color 0.15s ease;
+      min-height: 48px; /* better for touch */
+      display:flex;
+      align-items:center;
+      justify-content:center;
     }
     .opt:hover{ background: rgba(255,255,255,0.10); }
     .opt:active{ transform: translateY(1px); }
@@ -303,7 +353,7 @@
       margin-top: 12px;
       color: var(--muted);
       font-size: 13px;
-      line-height: 1.45;
+      line-height: 1.5;
     }
 
     .submitRow{
@@ -316,6 +366,7 @@
     .submitRow .btn{
       padding: 12px 16px;
     }
+
     .kbd{
       border:1px solid var(--border);
       background: rgba(255,255,255,0.06);
@@ -325,7 +376,7 @@
       font-size: 13px;
     }
 
-    /* Sidebar (NPC + instructions) */
+    /* Right side: make it useful even on large screens */
     .npcPanel{
       background: linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.06));
       border: 1px solid var(--border);
@@ -347,7 +398,7 @@
     }
 
     .npcLabel{
-      font-weight: 900;
+      font-weight: 950;
       letter-spacing: 0.4px;
       font-size: 13px;
       color: var(--muted);
@@ -360,26 +411,29 @@
       border-radius: 14px;
       background: rgba(255,255,255,0.04);
       border: 1px solid var(--border);
+      touch-action: manipulation;
     }
 
-    .howto{
+    .sideActions{
+      display:grid;
+      gap:10px;
+    }
+
+    .sideActions .btn{
+      width: 100%;
+      justify-content:center;
+    }
+
+    .sideNote{
       border: 1px solid var(--border);
       background: rgba(255,255,255,0.06);
       border-radius: 14px;
       padding: 10px 10px;
       color: var(--muted);
       font-size: 13px;
-      line-height: 1.4;
+      line-height: 1.45;
     }
-
-    .howto b{color: var(--text);}
-
-    .saveNote{
-      color: var(--muted);
-      font-size: 12px;
-      line-height: 1.4;
-      opacity: 0.9;
-    }
+    .sideNote b{color: var(--text);}
 
     .toast{
       position: fixed;
@@ -389,7 +443,7 @@
       padding: 12px 14px;
       border-radius: 14px;
       box-shadow: 0 18px 40px rgba(0,0,0,0.40);
-      max-width: 340px;
+      max-width: 360px;
       display: none;
       z-index: 999;
       white-space: pre-line;
@@ -407,14 +461,28 @@
       z-index: 998;
     }
 
+    /* Tablet */
     @media (max-width: 980px){
+      .main{ grid-template-columns: 1fr 300px; }
       .statusGrid{ grid-template-columns: repeat(3, minmax(0,1fr)); }
+      .howtoGrid{ grid-template-columns: 1fr; }
     }
 
+    /* Mobile */
     @media (max-width: 820px){
       .main{ grid-template-columns: 1fr; }
       .npcPanel{ position: relative; top: auto; }
       .statusGrid{ grid-template-columns: repeat(2, minmax(0,1fr)); }
+      .title{ font-size: 22px; }
+      .question{ font-size: 17px; }
+      .opt{ font-size: 15px; }
+      .toast{ inset: auto 12px 12px 12px; max-width: none; }
+    }
+
+    /* Focus visibility */
+    .btn:focus, .opt:focus{
+      outline: 3px solid rgba(96,165,250,0.55);
+      outline-offset: 2px;
     }
   </style>
 </head>
@@ -424,22 +492,17 @@
 
   <div class="app">
     <div class="header">
-      <div class="titleRow">
-        <div>
-          <h1 class="title">Time Travel Challenge — 1960s–1970s</h1>
-          <p class="subtitle">
-            This game “connects to the decade” because every question is pulled from major <b>1960s–1970s</b>
-            pop culture and technology milestones — like Beatlemania, Woodstock, Apollo 11, ARPANET, and early microprocessors.
-            You’re traveling through that era and proving you know the events that shaped modern music, media, and computing.
-          </p>
-        </div>
-      </div>
+      <h1 class="title">Time Travel Challenge — 1960s–1970s</h1>
+      <p class="subtitle">
+        Every question is tied to real <b>1960s–1970s</b> milestones — Beatlemania, Woodstock, Apollo 11, ARPANET,
+        and the first microprocessors. Correct answers “stabilize” your timeline as you travel through the era.
+      </p>
 
       <div class="chips">
         <div class="chip"><strong>2 Levels</strong> (Pop Culture, Tech)</div>
         <div class="chip"><strong>20 Questions</strong></div>
-        <div class="chip"><strong>Progress Saved</strong> (auto)</div>
-        <div class="chip"><strong>Three-Strikes = Recovery</strong> (no full restart)</div>
+        <div class="chip"><strong>Progress Saved</strong> (this device)</div>
+        <div class="chip"><strong>No Full Restart</strong> (Recovery Mode)</div>
       </div>
     </div>
 
@@ -448,22 +511,21 @@
 
       <div class="npcPanel">
         <div class="npcTop">
-          <div class="npcLabel">Anonymous NPC</div>
-          <div class="pill" id="stabilityPill">Time Stability: ●●●</div>
+          <div class="npcLabel">Time Guide</div>
+          <div class="pill" id="stabilityPill">Stability ●●●</div>
         </div>
 
-        <canvas id="npcCanvas" width="260" height="360" aria-label="NPC"></canvas>
+        <canvas id="npcCanvas" width="260" height="360" aria-label="NPC Submit Panel"></canvas>
 
-        <div class="howto">
-          <b>How to play</b><br>
-          1) Tap an answer choice.<br>
-          2) Click the NPC <b>SUBMIT</b> sign <i>or</i> press the <b>Submit</b> button.<br>
-          3) Correct = points + celebration 🎉<br>
-          Wrong = stability drops. At 0, you go to a <b>Recovery</b> screen and keep your progress.
+        <div class="sideActions">
+          <button class="btn" id="sideSubmitBtn" disabled style="opacity:0.55; cursor:not-allowed;">Submit</button>
         </div>
 
-        <div class="saveNote">
-          Tip: Your progress is saved in this browser (so refreshing won’t erase it).
+        <div class="sideNote">
+          <b>Submit options</b><br>
+          • Tap an answer, then press <b>Submit</b><br>
+          • Or click the NPC sign<br>
+          • Desktop: <b>Enter</b> works too
         </div>
       </div>
     </div>
@@ -543,22 +605,14 @@
   const TOTAL_QUESTIONS = Object.keys(QUESTIONS).length;
   const POINTS_PER_CORRECT = 5;
 
-  // -----------------------------
-  // PROGRESS / GAMEPLAY IMPROVEMENT
-  // Instead of restarting after 3 strikes:
-  // - You have "Time Stability" (3).
-  // - When it hits 0, you enter a Recovery screen (progress is kept).
-  // - Recovery gives a quick summary + lets you continue from the SAME question
-  //   with stability reset, but with a small score penalty (progress tracking).
-  // -----------------------------
+  // Progress system (no full restart)
   const MAX_STABILITY = 3;
-  const RECOVERY_PENALTY = 5; // points deducted on recovery (min 0)
+  const RECOVERY_PENALTY = 5;
 
-  // -----------------------------
-  // STATE (saved)
-  // -----------------------------
-  const STORAGE_KEY = "time_travel_challenge_v2";
+  // Storage
+  const STORAGE_KEY = "time_travel_challenge_v3";
 
+  // State
   let qnum = 1;
   let score = 0;
   let stability = MAX_STABILITY;
@@ -567,27 +621,23 @@
   let wrongCount = 0;
   let streak = 0;
   let bestStreak = 0;
+  let misses = {};
 
   let selectedOption = null;
   let submitEnabled = false;
 
-  // Track misses for a more meaningful end screen (data tracking)
-  let misses = {}; // {qnum: {picked, answer}}
-
-  // NPC mood: "neutral" | "happy" | "sad"
+  // NPC mood
   let npcMood = "neutral";
 
-  // -----------------------------
-  // ELEMENTS
-  // -----------------------------
+  // Elements
   const leftPanel = document.getElementById("leftPanel");
   const toast = document.getElementById("toast");
   const npcCanvas = document.getElementById("npcCanvas");
   const ctx = npcCanvas.getContext("2d");
-
   const stabilityPill = document.getElementById("stabilityPill");
+  const sideSubmitBtn = document.getElementById("sideSubmitBtn");
 
-  // Confetti canvas
+  // Confetti
   const fxCanvas = document.getElementById("fxCanvas");
   const fx = fxCanvas.getContext("2d");
   let confettiParticles = [];
@@ -600,10 +650,7 @@
   window.addEventListener("resize", resizeFX);
   resizeFX();
 
-  // -----------------------------
-  // SOUND (no external files)
-  // WebAudio tone beeps for happy/sad.
-  // -----------------------------
+  // Audio
   let audioCtx = null;
   function ensureAudio(){
     if (!audioCtx){
@@ -622,6 +669,7 @@
 
       g.gain.setValueAtTime(0.0001, audioCtx.currentTime);
       g.gain.exponentialRampToValueAtTime(gain, audioCtx.currentTime + ramp);
+      g.gain.exponentialRampToToValueAtTime?.(0.0001, audioCtx.currentTime + duration); // old Safari guard
       g.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + duration);
 
       o.connect(g);
@@ -632,22 +680,18 @@
   }
 
   function playHappySound(){
-    // quick uplifting arpeggio
     playTone({freq: 523.25, duration: 0.09, type:"triangle", gain:0.08});
     setTimeout(()=>playTone({freq: 659.25, duration: 0.09, type:"triangle", gain:0.08}), 80);
     setTimeout(()=>playTone({freq: 783.99, duration: 0.11, type:"triangle", gain:0.09}), 160);
   }
 
   function playSadSound(){
-    // descending tones
     playTone({freq: 392.00, duration: 0.10, type:"sine", gain:0.08});
     setTimeout(()=>playTone({freq: 329.63, duration: 0.12, type:"sine", gain:0.08}), 110);
     setTimeout(()=>playTone({freq: 261.63, duration: 0.14, type:"sine", gain:0.08}), 230);
   }
 
-  // -----------------------------
-  // UTIL
-  // -----------------------------
+  // Utils
   function clamp(n, a, b){ return Math.max(a, Math.min(b, n)); }
 
   function shuffle(arr) {
@@ -681,17 +725,19 @@
     return filled + empty;
   }
 
-  function updateStabilityPill(){
-    stabilityPill.textContent = `Time Stability: ${stabilityDots()}`;
-    stabilityPill.style.borderColor =
-      stability === MAX_STABILITY ? "rgba(52,211,153,0.5)" :
-      stability === 2 ? "rgba(251,191,36,0.5)" :
-      "rgba(251,113,133,0.55)";
+  function stabilityPct(){
+    return Math.round((stability / MAX_STABILITY) * 100);
   }
 
-  // -----------------------------
-  // SAVE / LOAD
-  // -----------------------------
+  function updateStabilityPill(){
+    stabilityPill.textContent = `Stability ${stabilityDots()}`;
+    stabilityPill.style.borderColor =
+      stability === MAX_STABILITY ? "rgba(52,211,153,0.55)" :
+      stability === 2 ? "rgba(251,191,36,0.55)" :
+      "rgba(251,113,133,0.60)";
+  }
+
+  // Save/load
   function saveState(){
     const payload = {
       qnum, score, stability,
@@ -711,7 +757,6 @@
       if (!raw) return false;
       const s = JSON.parse(raw);
 
-      // Basic validation / defaults
       qnum = clamp(Number(s.qnum || 1), 1, TOTAL_QUESTIONS);
       score = Math.max(0, Number(s.score || 0));
       stability = clamp(Number(s.stability || MAX_STABILITY), 0, MAX_STABILITY);
@@ -722,16 +767,32 @@
       bestStreak = Math.max(0, Number(s.bestStreak || 0));
 
       misses = s.misses && typeof s.misses === "object" ? s.misses : {};
-
       return true;
-    }catch(e){
-      return false;
-    }
+    }catch(e){ return false; }
   }
 
-  // -----------------------------
-  // CONFETTI
-  // -----------------------------
+  function resetRun(){
+    qnum = 1;
+    score = 0;
+    stability = MAX_STABILITY;
+    correctCount = 0;
+    wrongCount = 0;
+    streak = 0;
+    bestStreak = 0;
+    misses = {};
+    saveState();
+  }
+
+  function escapeHtml(str){
+    return String(str)
+      .replaceAll("&","&amp;")
+      .replaceAll("<","&lt;")
+      .replaceAll(">","&gt;")
+      .replaceAll('"',"&quot;")
+      .replaceAll("'","&#039;");
+  }
+
+  // Confetti
   function spawnConfetti(){
     const count = 160;
     const w = fxCanvas.width, h = fxCanvas.height;
@@ -772,12 +833,9 @@
       fx.globalAlpha = p.a;
       fx.translate(p.x, p.y);
       fx.rotate(p.rot);
-
-      // Intentionally not setting a fixed "theme"; random colors
       const hue = Math.floor(Math.random()*360);
       fx.fillStyle = `hsl(${hue} 90% 60%)`;
       fx.fillRect(-p.r, -p.r, p.r*2.2, p.r*1.0);
-
       fx.restore();
 
       if (p.life <= 0 || p.y > fxCanvas.height + 30){
@@ -791,25 +849,32 @@
     }
   }
 
-  // -----------------------------
-  // NPC DRAW (now reacts: happy/sad face)
-  // -----------------------------
+  // NPC drawing
+  CanvasRenderingContext2D.prototype.roundRect ||= function(x,y,w,h,r){
+    const rr = Math.min(r, w/2, h/2);
+    this.beginPath();
+    this.moveTo(x+rr, y);
+    this.arcTo(x+w, y, x+w, y+h, rr);
+    this.arcTo(x+w, y+h, x, y+h, rr);
+    this.arcTo(x, y+h, x, y, rr);
+    this.arcTo(x, y, x+w, y, rr);
+    this.closePath();
+    return this;
+  };
+
   function drawNPC() {
     ctx.clearRect(0, 0, npcCanvas.width, npcCanvas.height);
 
-    // background wash
     ctx.save();
     ctx.fillStyle = "rgba(255,255,255,0.03)";
     ctx.fillRect(0, 0, npcCanvas.width, npcCanvas.height);
     ctx.restore();
 
-    // define colors based on mood
     const skin = "#f2d2a9";
     const shirt = npcMood === "sad" ? "#2b2f3a" : "#3b3f4a";
     const faceTint = npcMood === "happy" ? "rgba(52,211,153,0.18)" :
                      npcMood === "sad" ? "rgba(251,113,133,0.18)" : "rgba(96,165,250,0.10)";
 
-    // mood aura
     ctx.save();
     ctx.fillStyle = faceTint;
     ctx.beginPath();
@@ -831,7 +896,7 @@
     ctx.beginPath(); ctx.arc(118, 63, 3.2, 0, Math.PI*2); ctx.fill();
     ctx.beginPath(); ctx.arc(142, 63, 3.2, 0, Math.PI*2); ctx.fill();
 
-    // eyebrows (sad)
+    // eyebrows
     ctx.strokeStyle = "rgba(0,0,0,0.60)";
     ctx.lineWidth = 2;
     if (npcMood === "sad"){
@@ -859,7 +924,6 @@
     ctx.fillStyle = shirt;
     ctx.strokeStyle = "rgba(255,255,255,0.85)";
     ctx.lineWidth = 2;
-    ctx.beginPath();
     ctx.roundRect(112, 104, 36, 110, 8);
     ctx.fill();
     ctx.stroke();
@@ -875,49 +939,41 @@
     ctx.stroke();
 
     // legs
-    ctx.beginPath();
-    ctx.moveTo(124, 214); ctx.lineTo(124, 315);
-    ctx.stroke();
-    ctx.beginPath();
-    ctx.moveTo(136, 214); ctx.lineTo(136, 315);
-    ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(124, 214); ctx.lineTo(124, 315); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(136, 214); ctx.lineTo(136, 315); ctx.stroke();
 
-    // SIGN (left side)
+    // sign
     const signX = 14, signY = 128, signW = 56, signH = 130;
     ctx.lineWidth = 2;
     ctx.strokeStyle = "rgba(255,255,255,0.85)";
     ctx.fillStyle = submitEnabled ? "rgba(251,191,36,0.95)" : "rgba(255,255,255,0.12)";
-    ctx.beginPath();
     ctx.roundRect(signX, signY, signW, signH, 10);
     ctx.fill();
     ctx.stroke();
 
     ctx.fillStyle = submitEnabled ? "rgba(0,0,0,0.85)" : "rgba(255,255,255,0.82)";
-    ctx.font = "900 12px ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial";
+    ctx.font = "950 12px ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial";
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
 
-    const lines = submitEnabled
-      ? ["CLICK","TO","SUBMIT"]
-      : ["SELECT","AN","ANSWER","FIRST"];
-
-    const centerX = signX + signW / 2;
-    const centerY = signY + signH / 2;
+    const lines = submitEnabled ? ["CLICK","TO","SUBMIT"] : ["SELECT","AN","ANSWER","FIRST"];
+    const centerX = signX + signW/2;
+    const centerY = signY + signH/2;
     const lineGap = 18;
     const startY = centerY - ((lines.length - 1) * lineGap) / 2;
-
     lines.forEach((t, i) => ctx.fillText(t, centerX, startY + i * lineGap));
 
     npcCanvas.style.cursor = submitEnabled ? "pointer" : "default";
   }
 
-  // -----------------------------
-  // UI RENDER
-  // -----------------------------
+  // UI
   function renderStart() {
     selectedOption = null;
     submitEnabled = false;
     npcMood = "neutral";
+    sideSubmitBtn.disabled = true;
+    sideSubmitBtn.style.opacity = "0.55";
+    sideSubmitBtn.style.cursor = "not-allowed";
     updateStabilityPill();
     drawNPC();
 
@@ -925,18 +981,24 @@
 
     leftPanel.innerHTML = `
       <div class="start">
-        <h2>Mission Brief: Why the 1960s–1970s?</h2>
+        <h2>Mission Brief</h2>
         <p class="copy">
-          The 1960s and 1970s were a turning point in modern history:
-          music and youth culture exploded (Beatles, Woodstock), and technology leaped forward
-          (spaceflight, the Moon landing, ARPANET, microprocessors). This game uses those real milestones
-          as checkpoints — each correct answer “stabilizes” your time travel.
+          You’re traveling through the <b>1960s–1970s</b>. Each correct answer stabilizes your timeline using real events from the era:
+          music and culture (Beatles, Woodstock) and major technology leaps (Apollo 11, ARPANET, microprocessors).
         </p>
 
-        <div class="callout">
-          <strong>Gameplay upgrade:</strong> Instead of restarting after three wrong answers,
-          you have <strong>Time Stability</strong> (3). When it hits 0, you go to a <strong>Recovery</strong>
-          screen with your stats and continue from the same place (no full reset).
+        <div class="howtoGrid">
+          <div class="howtoCard">
+            <b>How to play</b><br>
+            1) Tap an answer<br>
+            2) Press <b>Submit</b> (or click NPC sign)<br>
+            3) Correct = points + confetti + happy sound
+          </div>
+          <div class="howtoCard">
+            <b>New gameplay</b><br>
+            You have <b>Time Stability (3)</b> instead of “3 strikes restart.”<br>
+            When Stability hits 0 → <b>Recovery Mode</b> (keep progress, small score penalty).
+          </div>
         </div>
 
         <div class="btnRow">
@@ -945,9 +1007,8 @@
           ${hasSave ? `<button class="btn secondary" id="resetBtn">Reset Saved Progress</button>` : ``}
         </div>
 
-        <div class="hint" style="margin-top:14px;">
-          Pro tip: Tap an option, then click the NPC sign or press <span class="kbd">Enter</span>.
-          Correct answers play a happy sound + confetti 🎉
+        <div class="hint">
+          On mobile/tablet: everything is tap-friendly. On desktop: you can also press <span class="kbd">Enter</span> to submit.
         </div>
       </div>
     `;
@@ -960,7 +1021,6 @@
     if (hasSave){
       document.getElementById("continueBtn").addEventListener("click", () => {
         loadState();
-        // If stability is 0, take them to recovery
         if (stability <= 0) renderRecovery();
         else renderQuestion();
       });
@@ -980,11 +1040,15 @@
     updateStabilityPill();
     drawNPC();
 
+    sideSubmitBtn.disabled = true;
+    sideSubmitBtn.style.opacity = "0.55";
+    sideSubmitBtn.style.cursor = "not-allowed";
+
     const level = levelForQuestion(qnum);
     const shuffled = shuffle(q.options);
 
     const progressPct = Math.round(((qnum - 1) / TOTAL_QUESTIONS) * 100);
-    const totalAnswered = correctCount + wrongCount;
+    const answered = correctCount + wrongCount;
 
     leftPanel.innerHTML = `
       <div class="statusGrid">
@@ -1008,11 +1072,29 @@
           <div class="k">Accuracy</div>
           <div class="v">${accuracy()}%</div>
         </div>
+        <div class="stat">
+          <div class="k">Time Stability</div>
+          <div class="stabilityInline">
+            <div class="v">${stability}</div>
+            <div class="dots">${stabilityDots()}</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="stabilityBarWrap">
+        <div class="stabilityHeader">
+          <div><b>Stability Meter</b> — wrong answers reduce it</div>
+          <div><b>${stabilityPct()}%</b></div>
+        </div>
+        <div class="bar"><div id="stabilityBar"></div></div>
+        <div class="hint" style="margin-top:10px;">
+          If Stability reaches 0, you enter <b>Recovery Mode</b> (you keep your question progress).
+        </div>
       </div>
 
       <div class="progressWrap">
         <div class="progressLabel">
-          <div><b>Progress</b> — answered ${totalAnswered} so far</div>
+          <div><b>Progress</b> — answered ${answered} so far</div>
           <div>${progressPct}%</div>
         </div>
         <div class="bar"><div id="progressBar"></div></div>
@@ -1024,44 +1106,56 @@
       </div>
 
       <div class="question">${q.question}</div>
-
       <div class="options" id="options"></div>
 
       <div class="submitRow">
         <button class="btn" id="submitBtn" disabled style="opacity:0.55; cursor:not-allowed;">Submit</button>
         <span class="kbd">Enter</span>
-        <span class="hint" style="margin:0;">You can also click the NPC sign to submit.</span>
+        <span class="hint" style="margin:0;">Or click the NPC sign on the right.</span>
       </div>
 
       <div class="hint">
-        <b>Clear instructions:</b> Pick an option → then submit. Correct = +${POINTS_PER_CORRECT} points + confetti + happy sound.
-        Wrong = stability drops (no full restart).
+        Correct = <b>+${POINTS_PER_CORRECT} points</b> + confetti + happy sound.<br>
+        Wrong = Stability drops + upset face + sad sound.
       </div>
     `;
 
     document.getElementById("progressBar").style.width = `${progressPct}%`;
+    document.getElementById("stabilityBar").style.width = `${stabilityPct()}%`;
 
     const optionsDiv = document.getElementById("options");
     const submitBtn = document.getElementById("submitBtn");
 
+    function enableSubmit(){
+      submitEnabled = true;
+      submitBtn.disabled = false;
+      submitBtn.style.opacity = "1";
+      submitBtn.style.cursor = "pointer";
+
+      sideSubmitBtn.disabled = false;
+      sideSubmitBtn.style.opacity = "1";
+      sideSubmitBtn.style.cursor = "pointer";
+
+      drawNPC();
+    }
+
     shuffled.forEach(opt => {
-      const btn = document.createElement("div");
+      const btn = document.createElement("button");
+      btn.type = "button";
       btn.className = "opt";
       btn.textContent = opt;
       btn.addEventListener("click", () => {
         selectedOption = opt;
         [...optionsDiv.children].forEach(c => c.classList.remove("selected"));
         btn.classList.add("selected");
-        submitEnabled = true;
-        submitBtn.disabled = false;
-        submitBtn.style.opacity = "1";
-        submitBtn.style.cursor = "pointer";
-        drawNPC();
+        enableSubmit();
       });
       optionsDiv.appendChild(btn);
     });
 
-    submitBtn.addEventListener("click", () => submitAnswer());
+    const doSubmit = () => submitAnswer();
+    submitBtn.addEventListener("click", doSubmit);
+    sideSubmitBtn.onclick = doSubmit;
 
     saveState();
   }
@@ -1073,50 +1167,46 @@
     updateStabilityPill();
     drawNPC();
 
-    const total = correctCount + wrongCount;
+    sideSubmitBtn.disabled = true;
+    sideSubmitBtn.style.opacity = "0.55";
+    sideSubmitBtn.style.cursor = "not-allowed";
+
     const missedList = Object.keys(misses).map(k => Number(k)).sort((a,b)=>a-b);
 
     leftPanel.innerHTML = `
       <div class="start">
-        <h2>Recovery Mode (No Restart)</h2>
+        <h2>Recovery Mode (Progress Saved)</h2>
         <p class="copy">
-          Your <b>Time Stability</b> hit 0 — but you don’t lose your progress.
-          Review what happened, then continue from <b>Question ${qnum}</b>.
+          Your <b>Time Stability</b> hit 0, but you do <b>not</b> restart the game.
+          You will continue from <b>Question ${qnum}</b> after a small penalty.
         </p>
 
         <div class="callout">
-          <strong>Progress tracking:</strong><br>
-          • Correct: <b>${correctCount}</b> • Wrong: <b>${wrongCount}</b> • Accuracy: <b>${accuracy()}%</b><br>
-          • Best streak: <b>${bestStreak}</b><br>
-          • Current score: <b>${score}</b>
+          <strong>Progress tracking</strong><br>
+          Correct: <b>${correctCount}</b> • Wrong: <b>${wrongCount}</b> • Accuracy: <b>${accuracy()}%</b><br>
+          Best streak: <b>${bestStreak}</b> • Score: <b>${score}</b>
         </div>
 
         <div class="callout">
-          <strong>Penalty to keep it fair:</strong> Continuing costs <b>${RECOVERY_PENALTY}</b> points
-          (score will not go below 0). Time Stability resets back to ${MAX_STABILITY}.
+          <strong>Recovery cost:</strong> -${RECOVERY_PENALTY} points (score never goes below 0).<br>
+          Stability resets back to ${MAX_STABILITY}.
         </div>
 
         ${missedList.length ? `
           <div class="callout">
-            <strong>Missed so far:</strong><br>
+            <strong>Missed so far</strong><br>
             ${missedList.slice(0,6).map(n=>{
               const m = misses[n];
               const q = QUESTIONS[n];
-              return `• Q${n} (${q.year}): you picked “${escapeHtml(m.picked)}” — correct was “${escapeHtml(m.answer)}”`;
+              return `• Q${n} (${q.year}): you chose “${escapeHtml(m.picked)}” — correct was “${escapeHtml(m.answer)}”`;
             }).join("<br>")}
             ${missedList.length>6 ? `<br>…and ${missedList.length-6} more` : ``}
           </div>
-        ` : `
-          <div class="callout"><strong>Nice:</strong> No missed questions recorded yet.</div>
-        `}
+        ` : ``}
 
         <div class="btnRow">
           <button class="btn" id="continueAfterRecovery">Continue</button>
           <button class="btn secondary" id="goHome">Main Menu</button>
-        </div>
-
-        <div class="hint" style="margin-top:14px;">
-          Tip: On the next correct answer you’ll see confetti + a happy sound again.
         </div>
       </div>
     `;
@@ -1131,7 +1221,6 @@
     });
 
     document.getElementById("goHome").addEventListener("click", renderStart);
-
     saveState();
   }
 
@@ -1141,6 +1230,10 @@
     npcMood = "happy";
     updateStabilityPill();
     drawNPC();
+
+    sideSubmitBtn.disabled = true;
+    sideSubmitBtn.style.opacity = "0.55";
+    sideSubmitBtn.style.cursor = "not-allowed";
 
     const missedList = Object.keys(misses).map(k => Number(k)).sort((a,b)=>a-b);
 
@@ -1165,17 +1258,11 @@
               return `• Q${n} (${q.year}): picked “${escapeHtml(m.picked)}” — correct: “${escapeHtml(m.answer)}”`;
             }).join("<br>")}
           </div>
-        ` : `
-          <div class="callout"><strong>Perfect run!</strong> You didn’t miss any questions.</div>
-        `}
+        ` : `<div class="callout"><strong>Perfect run!</strong> You didn’t miss any questions.</div>`}
 
         <div class="btnRow">
           <button class="btn" id="playAgain">Play Again</button>
           <button class="btn secondary" id="clearSaved">Clear Saved Progress</button>
-        </div>
-
-        <div class="hint" style="margin-top:14px;">
-          This game is tied to the 1960s–1970s because each checkpoint is based on real events and tech breakthroughs from that era.
         </div>
       </div>
     `;
@@ -1194,33 +1281,10 @@
     saveState();
   }
 
-  function resetRun(){
-    qnum = 1;
-    score = 0;
-    stability = MAX_STABILITY;
-    correctCount = 0;
-    wrongCount = 0;
-    streak = 0;
-    bestStreak = 0;
-    misses = {};
-    saveState();
-  }
-
-  function escapeHtml(str){
-    return String(str)
-      .replaceAll("&","&amp;")
-      .replaceAll("<","&lt;")
-      .replaceAll(">","&gt;")
-      .replaceAll('"',"&quot;")
-      .replaceAll("'","&#039;");
-  }
-
-  // -----------------------------
-  // GAME LOGIC
-  // -----------------------------
+  // Game logic
   function submitAnswer() {
     if (!submitEnabled || !selectedOption) {
-      showToast("Select an answer first", "Then submit using the button or NPC sign.");
+      showToast("Select an answer first", "Then press Submit or click the NPC sign.");
       return;
     }
 
@@ -1234,13 +1298,10 @@
 
       npcMood = "happy";
       drawNPC();
-
-      // effects
       playHappySound();
       spawnConfetti();
 
       showToast("Correct! 🎉", `${q.fact}\n\n+${POINTS_PER_CORRECT} points`);
-
     } else {
       wrongCount += 1;
       streak = 0;
@@ -1251,52 +1312,42 @@
       npcMood = "sad";
       updateStabilityPill();
       drawNPC();
-
       playSadSound();
 
-      showToast("Wrong 😟", `Correct answer: ${q.answer}\nTime Stability: ${stabilityDots()}`);
+      showToast("Wrong 😟", `Correct answer: ${q.answer}\nStability: ${stabilityDots()}`);
     }
 
-    // Persist progress
     saveState();
 
-    // Recovery instead of restart
     if (stability <= 0) {
       renderRecovery();
       return;
     }
 
-    // Move on
     if (qnum < TOTAL_QUESTIONS) {
       qnum += 1;
       renderQuestion();
     } else {
-      // finished: optionally keep save, but they can clear
       renderEnd("Time Travel Complete!", "Nice job finishing all 20 questions!");
     }
   }
 
-  // Click anywhere on NPC canvas submits if enabled
+  // NPC sign click submit
   npcCanvas.addEventListener("click", () => {
     if (submitEnabled) submitAnswer();
     else showToast("Not ready yet", "Pick an answer first.");
-  });
+  }, {passive:true});
 
-  // Keyboard accessibility: Enter submits
+  // Desktop Enter key submit
   window.addEventListener("keydown", (e) => {
-    if (e.key === "Enter"){
-      if (submitEnabled) submitAnswer();
+    if (e.key === "Enter" && submitEnabled){
+      submitAnswer();
     }
   });
 
-  // -----------------------------
-  // INIT
-  // -----------------------------
+  // Init
   updateStabilityPill();
   drawNPC();
-
-  // If there is a saved game, show start screen with Continue option.
-  // If no save, show start screen.
   renderStart();
 </script>
 </body>
